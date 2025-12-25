@@ -1,15 +1,8 @@
-name = "saml-sso-cloudflare"
+﻿name = "saml-sso-cloudflare"
 main = "src/index.js"
 compatibility_date = "2024-12-01"
 
-# Development settings
-[dev]
-port = 8787
-local_protocol = "https"
-
-# Production environment
-[env.production]
-name = "saml-sso-production"
+# Custom domain route
 routes = [
   { pattern = "saml-demo.cyberguardng.ca/*", zone_name = "cyberguardng.ca" }
 ]
@@ -17,8 +10,7 @@ routes = [
 # KV Namespace for sessions
 [[kv_namespaces]]
 binding = "SAML_SESSIONS"
-id = "your-kv-namespace-id"
-preview_id = "your-preview-kv-namespace-id"
+id = "7a1211a77ae0440990da081018e8727c"
 
 # Environment variables (non-sensitive)
 [vars]
@@ -26,9 +18,3 @@ SAML_SP_ENTITY_ID = "https://saml-demo.cyberguardng.ca"
 SAML_SP_ACS_URL = "https://saml-demo.cyberguardng.ca/saml/acs"
 SAML_SP_SLO_URL = "https://saml-demo.cyberguardng.ca/saml/slo"
 SESSION_DURATION = "3600"
-
-# Secrets (set via wrangler secret put)
-# SAML_IDP_CERT - IdP X.509 certificate
-# SAML_IDP_SSO_URL - IdP SSO endpoint
-# SAML_IDP_ENTITY_ID - IdP entity ID
-# SAML_SP_PRIVATE_KEY - SP private key for signing
